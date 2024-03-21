@@ -1,5 +1,9 @@
 package local:hello;
 
-world hello {
-  export hello: func(name: string) -> string;
+interface hello {
+  hello: func(name: string) -> string;
+}
+
+world helloworld {
+  export hello;
 }

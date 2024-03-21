@@ -1,3 +1,7 @@
-export function hello (name) {
-  return `Hello ${name}`;
+const helloworld = {
+    hello: function (name) {
+      return `Hello, ${name}!`;
+    }
 }
+
+export { helloworld as hello };

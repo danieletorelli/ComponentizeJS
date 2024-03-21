@@ -7,7 +7,7 @@ use wasmtime_wasi::preview2::{command, ResourceTable, WasiCtx, WasiCtxBuilder, W
 use wasmtime_wasi_http::{proxy, WasiHttpCtx, WasiHttpView};
 
 wasmtime::component::bindgen!({
-    world: "hello",
+    world: "helloworld",
     path: "hello.wit",
     async: true
 });
@@ -65,9 +65,12 @@ async fn main() -> Result<()> {
         },
     );
 
-    let (instance, _instance) = Hello::instantiate_async(&mut store, &component, &linker).await?;
+    let (instance, _instance) = Helloworld::instantiate_async(&mut store, &component, &linker).await?;
 
-    let res = instance.call_hello(&mut store, "ComponentizeJS").await?;
+    let res = instance
+        .interface0
+        .call_hello(&mut store, "ComponentizeJS")
+        .await?;
     println!("{}", res);
     Ok(())
 }
